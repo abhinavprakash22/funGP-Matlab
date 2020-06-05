@@ -44,7 +44,7 @@ function[band] = computeConfBand(K,confLevel)
     %fprintf('Largest eigenvalue: %8.10f \n',max(d));
     %fprintf('Smallest eigenvalue: %8.10f \n',min(d));
 
-    threshold = 0.001; %threshold to compute truncation number
+    threshold = 0.000001; %threshold to compute truncation number
 
     %find the number of eigenvalues greater than threshold*max(d)
     if (threshold*max(d)) > min(d)
