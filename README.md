@@ -11,7 +11,7 @@ in *Prakash, A., Tuo, R., & Ding, Y. (2020). "Gaussian process aided function co
 - An example file is available (`example.m`) that applies the algorithm on a small sized problem. 
 
 ## Support for other languages:
-An R implementation of the same algorithm can be found in `DSWE` package available on `Github` at https://github.com/TAMU-AML/DSWE-Package. 
+An R implementation of the same algorithm can be found in `DSWE` package available on [`Github`](https://github.com/TAMU-AML/DSWE-Package). 
 
 
 
