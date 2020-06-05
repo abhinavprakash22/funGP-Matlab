@@ -44,7 +44,7 @@ function[out] = funGP(x1, y1, x2, y2, xtest, confLevel)
     estimatedParams = estimateHyperparameters(x1,y1,x2,y2); %estimate the hyperparameters
     diffCov = computeDiffCov(x1,y1,x2,y2,xtest,estimatedParams.params); %compute the difference in mean vector and covariance mat
     uband = computeConfBand(diffCov.K, confLevel); %compute the positive band  
-    nPoints = length(find(abs(diffCov.mu) > band)); %find the number of points that are beyond the band
+    nPoints = length(find(abs(diffCov.mu) > uband)); %find the number of points that are beyond the band
     %set differ to true if number of points beyond band is non zero
     if nPoints > 0
         differ = true;
