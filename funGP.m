@@ -33,11 +33,12 @@
 %       xtest: Input variable matrix or vector for the test points at which the mean vector 
 %              and covariance matrix of the difference has to be computed
 %       confLevel: Significance level for computing the difference band
-%   OUTPUT:
+%   OUTPUT: A data structure with the following elements
 %       differ: a boolean stating whether the functions statistically differ or not
-%      nPoints: number of points on which the functions differ
+%       nPoints: number of points on which the functions differ
 %       muDiff: a vector of pointwise difference in the mean vector
-%       band: a matrix of two columns upper and lower bounds for the confidence band. 
+%       band: a matrix of two columns, first column for lower bounds
+%             and the second column for upper bounds for the confidence band. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function[out] = funGP(x1, y1, x2, y2, xtest, confLevel)
