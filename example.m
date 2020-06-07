@@ -49,21 +49,21 @@ confLevel = 0.95; %setting confidence level
 xtest = linspace(0,1,100)'; %regular 1-dim grid of 100 points
 
 %running the algorithm
-out = funGP(x1, y1, x2, y2, xtest, confLevel);
+result = funGP(x1, y1, x2, y2, xtest, confLevel);
 
 %printing out the results
-if out.differ == true
+if result.differ == true
     fprintf("The functions are statistically different.\n");
-    fprintf("Number of points for which the functions are different are %d out of %d test points.\n",out.nPoints,size(xtest,1));
+    fprintf("Number of points for which the functions are different are %d out of %d test points.\n",result.nPoints,size(xtest,1));
 else
     fprintf("The functions are statistically the same.\n");
 end
 
 %plotting the difference along with confidence band
-plot(xtest,out.muDiff,'LineWidth',2,'Color','blue');
+plot(xtest,result.muDiff,'LineWidth',2,'Color','blue');
 hold on;
-plot(xtest, out.band(:,1),'--','LineWidth',2,'Color','red');
-plot(xtest, out.band(:,2),'--','LineWidth',2,'Color','red');
+plot(xtest, result.band(:,1),'--','LineWidth',2,'Color','red');
+plot(xtest, result.band(:,2),'--','LineWidth',2,'Color','red');
 hold off;
 
 
@@ -87,21 +87,21 @@ confLevel = 0.95; %setting confidence level
 xtest = linspace(0,1,100)'; %regular 1-dim grid of 100 points
 
 %running the algorithm
-out = funGP(x1, y1, x2, y2, xtest, confLevel);
+result = funGP(x1, y1, x2, y2, xtest, confLevel);
 
 %printing out the results
-if out.differ == true
+if result.differ == true
     fprintf("The functions are statistically different.\n");
-    fprintf("Number of points for which the functions are different are %d out of %d test points.\n",out.nPoints,size(xtest,1));
+    fprintf("Number of points for which the functions are different are %d out of %d test points.\n",result.nPoints,size(xtest,1));
 else
     fprintf("The functions are statistically the same.\n");
 end
 
 %plotting the difference along with confidence band
-plot(xtest,out.muDiff,'LineWidth',2,'Color','blue');
+plot(xtest,result.muDiff,'LineWidth',2,'Color','blue');
 hold on;
-plot(xtest, out.band(:,1),'--','LineWidth',2,'Color','red');
-plot(xtest, out.band(:,2),'--','LineWidth',2,'Color','red');
+plot(xtest, result.band(:,1),'--','LineWidth',2,'Color','red');
+plot(xtest, result.band(:,2),'--','LineWidth',2,'Color','red');
 hold off;
 
 
