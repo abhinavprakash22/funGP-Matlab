@@ -8,7 +8,7 @@ in *Prakash, A., Tuo, R., & Ding, Y. (2020). "Gaussian process aided function co
 
 - The main function file is `funGP.m`. The details about the input and the output of this function is given in the file.
 
-- An example file is available (`example.m`) that applies the algorithm on a small sized problem. 
+- An example file is available (`example.m`) that applies the algorithm to a small sized problem. 
 
 ## Support for other languages:
 An R implementation of the same algorithm can be found in `DSWE` package available on [`Github`](https://github.com/TAMU-AML/DSWE-Package). 
