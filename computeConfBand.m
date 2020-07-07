@@ -33,7 +33,7 @@
 %              lower band can be computed as negative of the upper band.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function[band] = computeConfBand(K,confLevel)
+function[band] = computeConfBand(K,confLevel,option)
    
     K = (K + K')/2; %to make sure that the matrix is numerically symmetric
     [V,D] = eig(K); %eigen decomposition
@@ -44,14 +44,30 @@ function[band] = computeConfBand(K,confLevel)
     %fprintf('Largest eigenvalue: %8.10f \n',max(d));
     %fprintf('Smallest eigenvalue: %8.10f \n',min(d));
 
-    threshold = 0.000001; %threshold to compute truncation number
-
-    %find the number of eigenvalues greater than threshold*max(d)
-    if (threshold*max(d)) > min(d)
-        m = find(d<threshold*max(d),1);
+    if ismember('rel_threshold',fieldnames(option.truncation))
+        rel_threshold = option.truncation.rel_threshold; %threshold to compute truncation number
+        %find the number of eigenvalues greater than threshold*max(d)
+        if (rel_threshold*max(d)) > min(d)
+            m = find(d<rel_threshold*max(d),1);
+        else
+            m = size(K,1);
+        end
+    elseif ismember('abs_threshold',fieldnames(option.truncation))
+        abs_threshold = option.truncation.abs_threshold;
+        if abs_threshold > min(d)
+            m = find(d<abs_threshold,1);
+        else
+            m = size(K,1);
+        end
     else
-        m = size(K,1);
+        if option.truncation.trunc_number <= size(K,1)
+            m = option.truncation.trunc_number;
+        else
+            m = size(K,1);
+        end
     end
+
+
 
     %print the tructation number and the smallest eigenvalue selected
     %fprintf('Number of eigenvalues selected: %d \n',m);
@@ -59,7 +75,7 @@ function[band] = computeConfBand(K,confLevel)
 
 
     R = sqrt(chi2inv(confLevel,m)); %compute the radius of coverage region with probability confLevel
-    t_samples = 1000; %number of samples to be used in simulating the band at each point
+    t_samples = option.zsamples; %number of samples to be used in simulating the band at each point
     Z = zeros(t_samples,m); %matrix to strore the simulated standard normal random variables. 
     
     %sample random vectors till the number of samples reach t_samples
